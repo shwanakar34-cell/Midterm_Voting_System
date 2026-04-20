@@ -1,8 +1,1 @@
-[
-{"id":1,"name":"Mobile App","votes":0},
-{"id":2,"name":"Web Design","votes":0},
-{"id":3,"name":"AI Chatbot","votes":0},
-{"id":4,"name":"Computer Hardware","votes":0},
-{"id":5,"name":"Social Media Marketing","votes":0}
-
-]
+[{"id":1,"name":"Mobile App","votes":0,"max_votes":5},{"id":2,"name":"Web Design","votes":0,"max_votes":5},{"id":3,"name":"AI Chatbot","votes":0,"max_votes":5},{"id":4,"name":"Computer Hardware","votes":0,"max_votes":5},{"id":5,"name":"Social Media Marketing","votes":0,"max_votes":5}]

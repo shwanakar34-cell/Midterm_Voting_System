@@ -1,23 +1,24 @@
 <?php
-header("Content-Type: application/json");
+header('Content-Type: application/json');
 
+$data = json_decode(file_get_contents('php://input'), true);
+$candidate_id = $data['candidate_id'];
 
-$input = json_decode(file_get_contents("php://input"), true);
+$json_data = file_get_contents('data.json');
+$items = json_decode($json_data, true);
 
-if (isset($input['candidate_id'])) {
-    $id = $input['candidate_id'];
-    $data = json_decode(file_get_contents('data.json'), true);
-    
-   
-    foreach ($data as &$item) {
-        if ($item['id'] == $id) {
+foreach ($items as &$item) {
+    if ($item['id'] == $candidate_id) {
+        
+        if ($item['votes'] < $item['max_votes']) {
             $item['votes']++;
-            break;
+            file_put_contents('data.json', json_encode($items));
+            echo json_encode(["status" => "success"]);
+            exit;
+        } else {
+            echo json_encode(["status" => "error", "message" => "This course is full!"]);
+            exit;
         }
     }
-    
-    
-    file_put_contents('data.json', json_encode($data));
-    echo json_encode(["success" => true, "message" => "Vote saved!"]);
 }
 ?>
